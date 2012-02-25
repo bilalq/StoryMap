@@ -14,7 +14,13 @@
     <script type="text/javascript">
       var map = null;
       function getMap() {
-        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AgobzOgArMDklOAvAwjqTAtbly6SUNNYzA9gCCJbbMcPTYoEUtURLHmKzsJpURtp'});
+        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+          credentials: 'AgobzOgArMDklOAvAwjqTAtbly6SUNNYzA9gCCJbbMcPTYoEUtURLHmKzsJpURtp',
+          enableClickableLogo: false,
+          enableSearchLogo: false,
+          disableZooming: true,
+          showDashboard: false
+        });
       }   
     </script>
 </head>
