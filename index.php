@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/stylesheets/main.css" type="text/css" charset="utf-8">
 
     <script type="text/javascript">
+      var theWindow = $(window);
       var map = null;
       function getMap() {
         map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
@@ -20,7 +21,11 @@
           enableSearchLogo: false,
           disableZooming: true,
           showDashboard: false,
-          zoom: 6
+          showScalebar: false,
+          width: theWindow.width()-20,
+          height: theWindow.height()-20,
+          zoom: 5,
+          center: new Microsoft.Maps.Location(40.7393264770508, -73.9893569946289)
         });
       }   
     </script>
