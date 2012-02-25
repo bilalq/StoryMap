@@ -19,7 +19,8 @@
           enableClickableLogo: false,
           enableSearchLogo: false,
           disableZooming: true,
-          showDashboard: false
+          showDashboard: false,
+          zoom: 6
         });
       }   
     </script>
