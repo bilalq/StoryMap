@@ -18,7 +18,7 @@ while($i<len($size))
 		$geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
 		$output= json_decode($geocode);
 	
-		return 	$output->results[$i]->geometry->location->lat . , .$output->results[$i]->geometry->location->lng;
+		return 	$output->results[$i]->geometry->location->lat  , $output->results[$i]->geometry->location->lng;
 	}
 
 
