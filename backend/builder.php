@@ -3,25 +3,21 @@ include("countrylist.php");
 $i=0;
 
 function geolocationlat($country) {
-  $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$country. '&sensor=false');
+  $geocode=file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$country.'&sensor=false');
   $output= json_decode($geocode);
-
-  echo "this is the lat: ".$output->results[0]->location->lat;
-  return 	$output->results->geometry->location->lat;
+  $lat = $output->results[0]->geometry->location->lat;
+  $yoffset = rand(-2000,2000);
+  $lat = $lat + ($yoffset/1000.0);
+  return $lat;
 }
 
 function geolocationlong($country) {
-  $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$country. '&sensor=false');
+  $geocode=file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$country.'&sensor=false');
   $output= json_decode($geocode);
-
-  return 	 $output->results->geometry->location->lng;
-}
-
-function randomize($lat,$long) {
-  $yoffset = rand(-2000,2000);
+  $long = $output->results[0]->geometry->location->lng;
   $xoffset = rand(-2000,2000);
-  $lat = $lat + ($yoffset/1000.0);
   $long = $long + ($xoffset/1000.0);
+  return $long;
 }
 
 $size = count($countrylist); 
@@ -31,8 +27,6 @@ while($i<1) {
   $json = file_get_contents($jsonurl);
   $data = json_decode($json);
   $numresults = count($data->results);
-  echo $numresults;
-
 
   $j = 0;
   while($j < $numresults)
@@ -45,10 +39,10 @@ while($i<1) {
     $lat = geolocationlat($countrylist[$i]);
     $long = geolocationlong($countrylist[$i]);
 
-    echo $lat;
-    echo $long;
+    print ' rand lat: '.$lat;
+    print ' rand lng: '.$long;
 
-    randomize($lat,$long);
+
     $idcount++;
 
     $j++;
