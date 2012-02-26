@@ -43,9 +43,10 @@ while($i<len($size))
 		print $countrylist[$i];
 		print $url;
 		print $lat;
+		$j++;
 	}
 
+$i++;
 
-
-
+}
 
