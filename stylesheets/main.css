@@ -8,12 +8,15 @@ div#myMap {
 }
 
 div.popup {
+  background-color: black;
   width: 250px;
   height: 400px;
   position: absolute;
+  top: 150px;
+  left: 100px;
   padding: 10px;
   overflow: scroll;
-  z-index: 99;
+  z-index: 9999;
 }
 
 .popup img {
@@ -21,9 +24,11 @@ div.popup {
   float: left;
   padding-right: 10px;
   padding-bottom: 10px;
+  z-index:10000;
 }
 
 .popup p {
   display: inline;
+  z-index:10000;
 }
 
