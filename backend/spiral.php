@@ -12,19 +12,16 @@ function geolocationlong() {
   $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
   $output= json_decode($geocode);
 
-  return 	 $output->results[$i]->geometry->location->lng;
+  return 	 (string)$output->results[$i]->geometry->location->lng;
 }
 
 function randomspiral($lat,$long) {
-$v = 0;
-while ($v<$numresults)
-  {
+
   $yoffset = rand(-2000,2000);
   $xoffset = rand(-2000,2000);
   $lat = $lat + ($yoffset/1000.0);
   $long = $long + ($xoffset/1000.0);
-  $v++;
-  }
+
 }
 
 $size = count($countrylist); 
