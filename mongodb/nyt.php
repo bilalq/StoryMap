@@ -1,6 +1,6 @@
 <?php
 define('API_KEY', 'bb7933c4e64db04f027b97b683a82c81:13:65718622');
-define('API_URL', 'http://api.nytimes.com/svc/search/v1/');
+define('API_URL', 'http://api.nytimes.com/svc/search/v1');
 $n = 10;
 $i = 0;
 do{
