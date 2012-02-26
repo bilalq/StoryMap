@@ -38,7 +38,7 @@ while($i<1) {
     $url = $data->results[$j]->url;
     $title = $data->results[$j]->title;
     $thumb= $data->results[$j]->small_image_url;
-    $large= str_replace("thumbStandard", "articleLarge", $small_image_url);
+    $large = str_replace(array("thumbStandard.jpg"), 'articleLarge.jpg', $thumb);
     $lat = geolocationlat($countrylist[$i]);
     $long = geolocationlong($countrylist[$i]);
 
