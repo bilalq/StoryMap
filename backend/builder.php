@@ -25,7 +25,7 @@ function geolocationlong($country) {
 
 $idcount=0;
 $size = count($countrylist); 
-while($i<1) {
+while($i<$size) {
   $jsonurl = 'http://api.nytimes.com/svc/search/v1/article?format=json&query=facet_terms%3A'.$countrylist[$i].'+small_image%3Ay&fields=geo_facet%2Curl%2Csmall_image_url%2Curl%2Ctitle%2Cbody&rank=newest&api-key=bb7933c4e64db04f027b97b683a82c81:13:65718622';
   $json = file_get_contents($jsonurl);
   $data = json_decode($json);
@@ -38,7 +38,7 @@ while($i<1) {
     $url = $data->results[$j]->url;
     $title = $data->results[$j]->title;
     $thumb= $data->results[$j]->small_image_url;
-    $large= str_replace("thumbStandard", "articleLarge", $small_image_url);
+    $large= str_replace(array("thumbStandard"), "articleLarge", $thumb);
     $lat = geolocationlat($countrylist[$i]);
     $long = geolocationlong($countrylist[$i]);
 
@@ -50,7 +50,7 @@ while($i<1) {
     $lat = mysql_real_escape_string($lat);
     $long = mysql_real_escape_string($long);
 
-    mysql_query("INSERT INTO things VALUES('id','$url', '$title', '$body', '$thumb', '$large', '$lat', '$long')"); 
+      mysql_query("INSERT INTO things VALUES('$idcount','$url', '$title', '$body', '$thumb', '$large', '$lat', '$long')"); 
 
     $j++;
     $idcount++;

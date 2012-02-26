@@ -42,6 +42,14 @@
     $(document).ready(function(){
       getMap(); //loads map
 
+      $.ajax({
+        url: "backend/ajaxhandle.php",
+        success: function(data){
+           var points = data;
+           $.each(points, 
+
+          }
+      }
       
       $('div.popup').popover({
         title: 'testing',
