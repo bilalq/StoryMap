@@ -21,10 +21,10 @@ function randomspiral($lat,$long)
 $v = 0;
 while ($v<$numresults)
   {
-  $yoffset = rand(-2,2);
-  $xoffset = rand(-2,2);
-  $lat = $lat + $yoffset;
-  $long = $long + $xoffset;
+  $yoffset = rand(-2000,2000);
+  $xoffset = rand(-2000,2000);
+  $lat = $lat + ($yoffset/1000.0);
+  $long = $long + ($xoffset/1000.0);
   $v++;
   }
 }
@@ -33,7 +33,7 @@ while ($v<$numresults)
 
 include("countrylist.php"); 
 $size = count($countrylist); 
-
+$idcount = 0;
 $i=0;
 
 
@@ -65,12 +65,25 @@ while($i<$size)
     print $lat;
     print $long;
 
-$m = new Mongo("mongodb://${creeves}:${qwerty}@villustrator.com");
+$con = mysql_connect("mysql.storymap.villustrator.com","storyfx","fireqwerty");
+if (!$con)
+  {
+  die('not working!!!' . mysql_error());
+  }
+  else
+  {
+    print "hello"
+  } 
 
-// select a database
-$db = $m->test;
-$collection = $db->news;
-$collection->insert(array($url, $countrylist[$i],$long));
+mysql_select_db("storymap", $con);
+
+mysql_query("INSERT INTO data ('id','source','headline','body','thumb','image','lat','long')
+//VALUES ('$idcount', '$url', '$title','$small_image_url','$large_image_url','$lat','$long')");
+$idcount++;
+
+print "data sent";
+
+mysql_close($con);
 
 
     $j++;
