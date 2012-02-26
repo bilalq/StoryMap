@@ -8,12 +8,7 @@
 
     <script type="text/javascript" src='javascripts/jquery/jquery-1.7.1.min.js'></script>
     <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
-    <script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="javascripts/bootstrap-tooltip.js"></script>
-    <script type="text/javascript" src="javascripts/bootstrap-popover.js"></script>
 
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css" type="text/css" charset="utf-8">
-    <link rel="stylesheet" href="stylesheets/bootstrap-responsive.min.css" type="text/css" charset="utf-8">
     <link rel="stylesheet" href="/stylesheets/main.css" type="text/css" charset="utf-8">
 
     <script type="text/javascript">
@@ -46,24 +41,29 @@
         url: "backend/jsoncreate.php",
         success: function(data){
            var points = data;
-           $.each(points, function(){
-          })
-        }
-      });
+           var i=0;
+           points.list.forEach(function(element) {
+             if (i%5 == 0){
+               addPin(element.lat, element.long, element.thumb,element);
+             }
+             i++;
+
+           });
+          }
+        })
       
-      $('div#popup img').popover({
-        title: 'testing',
-        content: '<p>more testing</p>'
-      });
     });
+
+    function addPin(lat, lng, thumb, elem) {
+      var pushpinOptions = {icon:thumb, width: 75, height: 75}; 
+      var pushpin= new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(lat,lng), pushpinOptions); 
+      map.entities.push(pushpin);
+    }
   </script>
 
   <!-- FULL CONTAINER DIV-->
   <div id="container">
     <div id="myMap"></div> <!-- Generated map -->
-    <div class="popup">
-      <p>testing</p>
-      <img src="img/placeholder.png" height="75" width="75">
   </div>
   <!-- END CONTAINER DIV -->
 </body>

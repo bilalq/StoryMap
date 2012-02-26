@@ -1,14 +1,15 @@
 <?php
+header('Content-type: application/json');
 mysql_connect("mysql.storymap.villustrator.com", "storyfx", "fireqwerty") or die(mysql_error());
 mysql_select_db("storymap") or die(mysql_error());
 
-$result = mysql_query("select * from things");
+$result = mysql_query("select * from things ORDER BY  `things`.`id` DESC ");
 
 $rows = array();
 while ($r = mysql_fetch_assoc($result)) {
   $rows[]=$r;
 }
-echo json_encode($rows);
+echo "{\"list\": ".json_encode($rows)."}";
 /*$json = "";
 while ($row = mysql_fetch_object($result)) 
 {
