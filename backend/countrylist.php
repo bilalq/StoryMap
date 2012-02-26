@@ -1,4 +1,4 @@
-array $countrylist = ("Afghanistan"
+ $countrylist = array("Afghanistan"
 ,"Albania"
 ,"Algeria"
 ,"Andorra"
