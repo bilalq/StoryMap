@@ -43,13 +43,12 @@
       getMap(); //loads map
 
       $.ajax({
-        url: "backend/ajaxhandle.php",
+        url: "backend/jsoncreate.php",
         success: function(data){
            var points = data;
-           $.each(points, 
-
+           console.log(data);
           }
-      }
+      });
       
       $('div.popup').popover({
         title: 'testing',
