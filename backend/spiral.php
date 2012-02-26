@@ -31,7 +31,12 @@ $size = count($countrylist);
 $idcount = 0;
 $i=0;
 
-$con = mysql_connect("mysql.storymap.villustrator.com","storyfx","fireqwerty");
+$link = mysql_connect('mysql.storymap.villustrator.com', 'storyfx', 'fireqwerty')
+  or die('Could not connect: ' . mysql_error());
+echo "connected";
+mysql_select_db('storymap', $link) or die('could not connect to db');
+
+/*$con = mysql_connect("mysql.storymap.villustrator.com","storyfx","fireqwerty");
 if (!$con) 
 {
   die('not working!!!' . mysql_error());
@@ -42,7 +47,7 @@ else
   print mysql_list_tables("storymap");
 } 
 
-mysql_select_db("storymap", $con);
+mysql_select_db("storymap", $con);*/
 
 while($i<1)
 {
@@ -73,9 +78,18 @@ while($i<1)
     print $long;
 
 
+    $query  = "INSERT INTO data 
+      VALUES
+    ('$url','$title','$body','$small_image_url','$large_image_url','$lat','$long',$idcount')";
 
+    mysql_query($query, $link);
+
+<<<<<<< HEAD
       mysql_query("INSERT INTO 'storymap' 'data' ('id','source','headline','body','thumb','image','lat','long')
       VALUES ("$idcount", "$url", "$title", "$small_image_url", "$large_image_url", "$lat", "$long")");
+=======
+    /*      mysql_query("INSERT INTO data (id,source,headline,body,thumb,image,lat,long) VALUES ('$idcount', '$url', '$title', '$body' ,'$small_image_url', '$large_image_url', '$lat', '$long')");*/
+>>>>>>> bdf18abb7cf60366f22c218d73b485f215855af7
       $idcount++;
 
         $j++;
@@ -85,4 +99,4 @@ while($i<1)
   sleep(1);
 }
 
-mysql_close($con);
+mysql_close($link);
