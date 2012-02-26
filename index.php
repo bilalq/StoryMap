@@ -42,16 +42,13 @@
     $(document).ready(function(){
       getMap(); //loads map
     });
-
-    console.log(theWindow);
-
   </script>
 
   <!-- FULL CONTAINER DIV-->
   <div id="container">
     <div id="myMap"></div> <!-- Generated map -->
     <div class="popup>
-      <p></p>
+      <p>testing</p>
       <img src="img/placeholder.png" height="75" width="75">
   </div>
   <!-- END CONTAINER DIV -->
