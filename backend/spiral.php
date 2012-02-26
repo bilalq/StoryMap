@@ -37,7 +37,7 @@ $idcount = 0;
 $i=0;
 
 
-while($i<$size)
+while($i<2)
 {
 
   $jsonurl = 'http://api.nytimes.com/svc/search/v1/article?format=json&query=facet_terms%3A'.$countrylist[$i].'+small_image%3Ay&fields=geo_facet%2Curl%2Csmall_image_url%2Curl%2Ctitle%2Cbody&rank=newest&api-key=bb7933c4e64db04f027b97b683a82c81:13:65718622';
@@ -72,20 +72,16 @@ if (!$con)
   }
   else
   {
-    print "hello"
+    print "hello";
   } 
 
-mysql_select_db("storymap", $con);
+  mysql_select_db("storymap", $con);
 
-mysql_query("INSERT INTO data ('id','source','headline','body','thumb','image','lat','long')
-//VALUES ('$idcount', '$url', '$title','$small_image_url','$large_image_url','$lat','$long')");
-$idcount++;
+  mysql_query('INSERT INTO data (\'id\',\'source\',\'headline\',\'body\',\'thumb\',\'image\',\'lat\',\'long\')
+  VALUES ('.$idcount.', '.$url.', '.$title.', '.$small_image_url.', '.$large_image_url.', '.$lat.', '.$long.')');
+  $idcount++;
 
-print "data sent";
-
-mysql_close($con);
-
-
+  mysql_close($con);
     $j++;
   }
 
