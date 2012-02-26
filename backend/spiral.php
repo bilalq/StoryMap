@@ -18,7 +18,7 @@ function geolocationlong()
 function randomspiral($lat,$long)
 {
 
-$v = 0
+$v = 0;
 while ($v<$numresults)
   {
   $yoffset = rand(-2,2);
@@ -70,8 +70,6 @@ $m = new Mongo("mongodb://${creeves}:${qwerty}@villustrator.com");
 // select a database
 $db = $m->test;
 $collection = $db->news;
-// insert a documen
-// select a collection (analogous to a relational database's table)
 $collection->insert(array($url, $countrylist[$i],$long));
 
 
