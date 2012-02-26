@@ -7,8 +7,11 @@
     <title>StoryMap - A new way to see the world</title>
 
     <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
     <script type="text/javascript" src='javascripts/jquery/jquery-1.7.1.min.js'></script>
 
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="stylesheets/bootstrap-responsive.min.css" type="text/css" charset="utf-8">
     <link rel="stylesheet" href="/stylesheets/main.css" type="text/css" charset="utf-8">
 
     <script type="text/javascript">
@@ -41,10 +44,15 @@
     console.log(theWindow);
 
   </script>
-  
-  <div id="container"> <!-- FULL CONTAINER DIV-->
-    <div id='myMap'></div>
-  </div> <!-- END CONTAINER DIV -->
+
+  <!-- FULL CONTAINER DIV-->
+  <div id="container">
+    <div id="myMap"></div> <!-- Generated map -->
+    <div class="popup>
+      <p></p>
+      <img height="75" width="75">
+  </div>
+  <!-- END CONTAINER DIV -->
 </body>
 
 </html>
