@@ -84,12 +84,8 @@ while($i<1)
 
     mysql_query($query, $link);
 
-<<<<<<< HEAD
       mysql_query("INSERT INTO 'storymap' 'data' ('id','source','headline','body','thumb','image','lat','long')
       VALUES ("$idcount", "$url", "$title", "$small_image_url", "$large_image_url", "$lat", "$long")");
-=======
-    /*      mysql_query("INSERT INTO data (id,source,headline,body,thumb,image,lat,long) VALUES ('$idcount', '$url', '$title', '$body' ,'$small_image_url', '$large_image_url', '$lat', '$long')");*/
->>>>>>> bdf18abb7cf60366f22c218d73b485f215855af7
       $idcount++;
 
         $j++;
