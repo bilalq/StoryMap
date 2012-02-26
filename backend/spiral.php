@@ -1,23 +1,21 @@
 <?php
+include("countrylist.php"); 
 
-function geolocationlat()
-{
+function geolocationlat() {
   $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
   $output= json_decode($geocode);
 
   return 	$output->results[$i]->geometry->location->lat;
 }
-function geolocationlong()
-{
+
+function geolocationlong() {
   $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
   $output= json_decode($geocode);
 
   return 	 $output->results[$i]->geometry->location->lng;
 }
 
-function randomspiral($lat,$long)
-{
-
+function randomspiral($lat,$long) {
 $v = 0;
 while ($v<$numresults)
   {
@@ -29,15 +27,24 @@ while ($v<$numresults)
   }
 }
 
-
-
-include("countrylist.php"); 
 $size = count($countrylist); 
 $idcount = 0;
 $i=0;
 
+$con = mysql_connect("mysql.storymap.villustrator.com","storyfx","fireqwerty");
+if (!$con) 
+{
+  die('not working!!!' . mysql_error());
+}
+else
+{
+  print "hello";
+  print mysql_list_tables("storymap");
+} 
 
-while($i<2)
+mysql_select_db("storymap", $con);
+
+while($i<1)
 {
 
   $jsonurl = 'http://api.nytimes.com/svc/search/v1/article?format=json&query=facet_terms%3A'.$countrylist[$i].'+small_image%3Ay&fields=geo_facet%2Curl%2Csmall_image_url%2Curl%2Ctitle%2Cbody&rank=newest&api-key=bb7933c4e64db04f027b97b683a82c81:13:65718622';
@@ -60,31 +67,22 @@ while($i<2)
 
    
 
-    print $countrylist[$i];
-    print $url;
+    //print $countrylist[$i];
+    //print $url;
     print $lat;
     print $long;
 
-$con = mysql_connect("mysql.storymap.villustrator.com","storyfx","fireqwerty");
-if (!$con)
-  {
-  die('not working!!!' . mysql_error());
-  }
-  else
-  {
-    print "hello";
-  } 
 
-  mysql_select_db("storymap", $con);
 
-  mysql_query('INSERT INTO data (\'id\',\'source\',\'headline\',\'body\',\'thumb\',\'image\',\'lat\',\'long\')
-  VALUES ('.$idcount.', '.$url.', '.$title.', '.$small_image_url.', '.$large_image_url.', '.$lat.', '.$long.')');
-  $idcount++;
+      mysql_query("INSERT INTO 'storymap' 'data' ('id','source','headline','body','thumb','image','lat','long')
+      VALUES ('$idcount', '$url', '$title', '$small_image_url', '$large_image_url', '$lat', '$long')");
+      $idcount++;
 
-  mysql_close($con);
-    $j++;
+        $j++;
   }
 
   $i++;
   sleep(1);
 }
+
+mysql_close($con);
