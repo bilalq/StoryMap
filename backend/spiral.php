@@ -24,6 +24,8 @@ while ($v<$numresults)
   $lat = $lat + ($yoffset/1000.0);
   $long = $long + ($xoffset/1000.0);
   $v++;
+  echo $lat;
+  echo $long;
   }
 }
 
@@ -47,8 +49,8 @@ while($i<1)
     $title = $data->results[$j]->title;
     $small_image_url = $data->results[$j]->small_image_url;
     $large_image_url = str_replace("thumbStandard", "articleLarge", $small_image_url);
-    $lat = (string)geolocationlat();
-    $long = (string)geolocationlong();
+    $lat = geolocationlat();
+    $long = geolocationlong();
     randomspiral($lat,$long);
 
    
@@ -56,13 +58,16 @@ while($i<1)
     //print $countrylist[$i];
     //print $url;
     print $lat;
+    print "blah";
     print $long;
 
 
+    $lat= "".$lat;
+    $long= "".$long;
   mysql_connect("mysql.storymap.villustrator.com", "storyfx", "fireqwerty") or die(mysql_error()); 
   mysql_select_db("storymap") or die(mysql_error()); 
   $phone="testing";
-  mysql_query("INSERT INTO data(source,headline,body,thumb,image,lat,long,id) VALUES('$url','$title', '$body', '$small_image_url','$large_image_url','$lat','$long')"); 
+  mysql_query("INSERT INTO data(source,headline,body,thumb,image,lat,long,id) VALUES('$url','$title', '$body', '$small_image_url','$large_image_url','$lat','$long','$idcount')"); 
      
       $idcount++;
 
@@ -73,4 +78,4 @@ while($i<1)
   sleep(1);
 }
 
-mysql_close($link);
+mysql_close();
