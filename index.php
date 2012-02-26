@@ -41,7 +41,10 @@
     console.log(theWindow);
 
   </script>
-  <div id='myMap'></div>
+  
+  <div id="container"> <!-- FULL CONTAINER DIV-->
+    <div id='myMap'></div>
+  </div> <!-- END CONTAINER DIV -->
 </body>
 
 </html>
