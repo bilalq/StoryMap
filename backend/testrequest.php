@@ -13,12 +13,12 @@ while($i<len($size))
 	$data = json_decode($json);
 	$numresults = $data->count(results);
 
-	function geolocation($placename)
+	function geolocation()
 	{
-		$geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$placename. '&sensor=false');
+		$geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
 		$output= json_decode($geocode);
 	
-		return 	$output->results[$i]->geometry->location->lat.', '.$output->results[$i]->geometry->location->lng;
+		return 	$output->results[$i]->geometry->location->lat . , .$output->results[$i]->geometry->location->lng;
 	}
 
 
@@ -30,7 +30,7 @@ while($i<len($size))
 		$title = $data->results[$j]->title;
 		$small_image_url = $data->results[$j]->small_image_url;
 		$large_image_url = str_replace("thumbStandard", "articleLarge", $small_image_url);
-		$lat,$long = geolocation($countrylist[$i]);
+		$lat,$long = geolocation();
 		
 		print $countrylist[$i];
 		print $url;
