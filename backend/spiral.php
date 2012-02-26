@@ -30,25 +30,6 @@ while ($v<$numresults)
 $size = count($countrylist); 
 $idcount = 0;
 $i=0;
-
-$link = mysql_connect('mysql.storymap.villustrator.com', 'storyfx', 'fireqwerty')
-  or die('Could not connect: ' . mysql_error());
-echo "connected";
-mysql_select_db('storymap', $link) or die('could not connect to db');
-
-/*$con = mysql_connect("mysql.storymap.villustrator.com","storyfx","fireqwerty");
-if (!$con) 
-{
-  die('not working!!!' . mysql_error());
-}
-else
-{
-  print "hello";
-  print mysql_list_tables("storymap");
-} 
-
-mysql_select_db("storymap", $con);*/
-
 while($i<1)
 {
 
@@ -66,8 +47,8 @@ while($i<1)
     $title = $data->results[$j]->title;
     $small_image_url = $data->results[$j]->small_image_url;
     $large_image_url = str_replace("thumbStandard", "articleLarge", $small_image_url);
-    $lat = geolocationlat();
-    $long = geolocationlong();
+    $lat = (string)geolocationlat();
+    $long = (string)geolocationlong();
     randomspiral($lat,$long);
 
    
@@ -78,9 +59,11 @@ while($i<1)
     print $long;
 
 
-
-      mysql_query("INSERT INTO data (id,source,headline,body,thumb,image,lat,long)
-      VALUES ("$idcount", "$url", "$title", "$small_image_url", "$large_image_url", "$lat", "$long");");
+  mysql_connect("mysql.storymap.villustrator.com", "storyfx", "fireqwerty") or die(mysql_error()); 
+  mysql_select_db("storymap") or die(mysql_error()); 
+  $phone="testing";
+  mysql_query("INSERT INTO data(source,headline,body,thumb,image,lat,long,id) VALUES('$url','$title', '$body', '$small_image_url','$large_image_url','$lat','$long')"); 
+     
       $idcount++;
 
         $j++;
