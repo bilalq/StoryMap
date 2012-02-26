@@ -1,0 +1,9 @@
+{
+  source: 
+  headline:
+  body:
+  thumb:
+  image:
+  lat:
+  long:
+}
