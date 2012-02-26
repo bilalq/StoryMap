@@ -5,14 +5,17 @@ function geolocationlat() {
   $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
   $output= json_decode($geocode);
 
-  return 	$output->results[$i]->geometry->location->lat;
+$latitude = $output->results[$i]->geometry->location->lat;
+return $latitude;
 }
 
 function geolocationlong() {
   $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
   $output= json_decode($geocode);
 
-  return 	 (string)$output->results[$i]->geometry->location->lng;
+ $longitude = $output->results[$i]->geometry->location->lng;
+ 
+ return $longitude;
 }
 
 function randomspiral($lat,$long) {
@@ -21,7 +24,14 @@ function randomspiral($lat,$long) {
   $xoffset = rand(-2000,2000);
   $lat = $lat + ($yoffset/1000.0);
   $long = $long + ($xoffset/1000.0);
+<<<<<<< HEAD
 
+=======
+  $v++;
+  echo $lat;
+  echo $long;
+  }
+>>>>>>> 9c13ffa546db1d6c6487a87a5a1fba5b090d0f47
 }
 
 $size = count($countrylist); 
@@ -44,8 +54,8 @@ while($i<1)
     $title = $data->results[$j]->title;
     $small_image_url = $data->results[$j]->small_image_url;
     $large_image_url = str_replace("thumbStandard", "articleLarge", $small_image_url);
-    $lat = (string)geolocationlat();
-    $long = (string)geolocationlong();
+    $lat = geolocationlat();
+    $long = geolocationlong();
     randomspiral($lat,$long);
 
    
@@ -53,13 +63,16 @@ while($i<1)
     //print $countrylist[$i];
     //print $url;
     print $lat;
+    print "blah";
     print $long;
 
 
+    $lat= "".$lat;
+    $long= "".$long;
   mysql_connect("mysql.storymap.villustrator.com", "storyfx", "fireqwerty") or die(mysql_error()); 
   mysql_select_db("storymap") or die(mysql_error()); 
   $phone="testing";
-  mysql_query("INSERT INTO data(source,headline,body,thumb,image,lat,long,id) VALUES('$url','$title', '$body', '$small_image_url','$large_image_url','$lat','$long')"); 
+  mysql_query("INSERT INTO data(source,headline,body,thumb,image,lat,long,id) VALUES('$url','$title', '$body', '$small_image_url','$large_image_url','$lat','$long','$idcount')"); 
      
       $idcount++;
 
@@ -70,4 +83,4 @@ while($i<1)
   sleep(1);
 }
 
-mysql_close($link);
+mysql_close();
