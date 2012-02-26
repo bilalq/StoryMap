@@ -42,6 +42,7 @@
     $(document).ready(function(){
       getMap(); //loads map
 
+      
       $('div.popup').popover({
         title: 'testing',
         content: '<p>more testing</p>'

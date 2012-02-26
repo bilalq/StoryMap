@@ -50,7 +50,7 @@ while($i<1) {
     $lat = mysql_real_escape_string($lat);
     $long = mysql_real_escape_string($long);
 
-    mysql_query("INSERT INTO things VALUES('$url', '$title', '$body', '$thumb', '$large', '$lat', '$long')"); 
+    mysql_query("INSERT INTO things VALUES('id','$url', '$title', '$body', '$thumb', '$large', '$lat', '$long')"); 
 
     $j++;
     $idcount++;
