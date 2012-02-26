@@ -1,7 +1,5 @@
 <?php
 
-
-
 include("countrylist.php"); 
 $size = count($countrylist[]); 
 
@@ -33,6 +31,8 @@ while(i<len($size))
 		$small_image_url = $data->results[$j]->small_image_url;
 		$large_image_url = str_replace("thumbStandard", "articleLarge", $small_image_url);
 		$lat,$long = geolocation($countrylist[$i]);
+		
+		print $countrylist[$i];
 		print $url;
 		print $lat;
 	}
