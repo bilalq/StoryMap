@@ -5,7 +5,7 @@ $size = count($countrylist);
 
 
 $i=0;
-while(i<len($size))
+while($i<len($size))
 {
 
 	$jsonurl = "http://api.nytimes.com/svc/search/v1/article?format=json&query=facet_terms%3A".$countrylist[i]."small_image%3Ay&fields=geo_facet%2Csmall_image_url%2Curl%2Ctitle%2Cbody&rank=newest&api-key=bb7933c4e64db04f027b97b683a82c81:13:65718622";
@@ -13,12 +13,12 @@ while(i<len($size))
 	$data = json_decode($json);
 	$numresults = $data->count(results);
 
-	function geolocation()
+	function geolocation($placename)
 	{
-		$geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway+Mountain+View,+CA&sensor=false');
+		$geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$placename. '&sensor=false');
 		$output= json_decode($geocode);
 	
-		return 	$output->results[0]->geometry->location->lat.', '.$output->results[0]->geometry->location->lng;
+		return 	$output->results[$i]->geometry->location->lat.', '.$output->results[$i]->geometry->location->lng;
 	}
 
 
@@ -39,5 +39,5 @@ while(i<len($size))
 
 
 
-echo $test;
+
 
