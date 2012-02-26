@@ -38,6 +38,8 @@
       getMap(); //loads map
     });
 
+    console.log(theWindow);
+
   </script>
   
   <div id="container"> <!-- FULL CONTAINER DIV-->
