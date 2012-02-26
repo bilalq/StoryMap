@@ -8,8 +8,12 @@ div#myMap {
 }
 
 div.popup {
+  width: 250px;
+  height: 400px;
   position: absolute;
   padding: 10px;
+  overflow: scroll;
+  z-index: 99;
 }
 
 .popup img {
