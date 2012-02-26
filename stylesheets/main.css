@@ -1,3 +1,20 @@
 div#myMap {
   position: relative;
 }
+
+div.popup {
+  position: absolute;
+  padding: 10px;
+}
+
+.popup img {
+  margin: auto;
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.popup p {
+  display: inline;
+}
+
