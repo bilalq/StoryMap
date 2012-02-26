@@ -41,16 +41,17 @@
   <script>
     $(document).ready(function(){
       getMap(); //loads map
-
+      var count = 3;
       $.ajax({
         url: "backend/jsoncreate.php",
         success: function(data){
            var points = data;
-           console.log(data);
-          }
+           $.each(points, function(){
+          })
+        }
       });
       
-      $('div.popup').popover({
+      $('div#popup img').popover({
         title: 'testing',
         content: '<p>more testing</p>'
       });
