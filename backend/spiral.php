@@ -4,29 +4,20 @@ include("countrylist.php");
 function geolocationlat() {
   $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
   $output= json_decode($geocode);
-
-  return 	$output->results[$i]->geometry->location->lat;
+print  $output->results[$i]->geometry->location[0];
+$bin =  	$output->results[$i]->geometry->location->lat;
+return $bin;
 }
 
 function geolocationlong() {
   $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
   $output= json_decode($geocode);
-
+print $output->results[$i]->geometry->location->lat;
   return 	 $output->results[$i]->geometry->location->lng;
 }
 
 function randomspiral($lat,$long) {
-$v = 0;
-while ($v<$numresults)
-  {
-  $yoffset = rand(-2000,2000);
-  $xoffset = rand(-2000,2000);
-  $lat = $lat + ($yoffset/1000.0);
-  $long = $long + ($xoffset/1000.0);
-  $v++;
-  echo $lat;
-  echo $long;
-  }
+
 }
 
 $size = count($countrylist); 
@@ -61,9 +52,6 @@ while($i<1)
     print "blah";
     print $long;
 
-
-    $lat= "".$lat;
-    $long= "".$long;
   mysql_connect("mysql.storymap.villustrator.com", "storyfx", "fireqwerty") or die(mysql_error()); 
   mysql_select_db("storymap") or die(mysql_error()); 
   $phone="testing";

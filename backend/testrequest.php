@@ -9,6 +9,7 @@ function geolocationlat()
 {
   $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
   $output= json_decode($geocode);
+  print $output;
 
   return 	$output->results[$i]->geometry->location->lat;
 }
@@ -16,7 +17,7 @@ function geolocationlong()
 {
   $geocode=file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' .$countrylist[$i]. '&sensor=false');
   $output= json_decode($geocode);
-
+  print $output;
   return 	 $output->results[$i]->geometry->location->lng;
 }
 
