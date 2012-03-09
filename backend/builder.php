@@ -1,9 +1,9 @@
 <?php
 include("countrylist.php"); 
+include("keys.php");
 $i=0;
-
-mysql_connect("mysql.storymap.villustrator.com", "storyfx", "fireqwerty") or die(mysql_error()); 
-mysql_select_db("storymap") or die(mysql_error()); 
+mysql_connect($SQLSERVER, $SQLUSER , $SQLPASS) or die(mysql_error()); 
+mysql_select_db($SQLDB) or die(mysql_error()); 
 
 function geolocationlat($country) {
   $geocode=file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$country.'&sensor=false');

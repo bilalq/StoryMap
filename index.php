@@ -25,7 +25,8 @@
           width: theWindow.width()-20,
           height: theWindow.height()-20,
           zoom: 5,
-          center: new Microsoft.Maps.Location(40.7393264770508, -73.9893569946289)
+          center: new Microsoft.Maps.Location(47.393264770508, 14.9493569946289)
+//          center: new Microsoft.Maps.Location(40.7393264770508, -73.9893569946289)
         });
       }   
     </script>
@@ -43,11 +44,10 @@
            var points = data;
            var i=0;
            points.list.forEach(function(element) {
-             if (i%5 == 0){
-               addPin(element.lat, element.long, element.thumb,element);
+             if (i%3 == 0){
+               addPin(element.lat, element.long, element.thumb);
              }
              i++;
-
            });
           }
         })
