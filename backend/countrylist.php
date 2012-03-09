@@ -1,5 +1,7 @@
 <?php
- $countrylist = array('Afghanistan', 'Albania'
+$countrylist = array(
+ 'Afghanistan'
+,'Albania'
 ,'Algeria'
 ,'Andorra'
 ,'Angola'
